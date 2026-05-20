@@ -3,491 +3,825 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WhoCalledIt Top Callers • Detailed Analysis • May 2026</title>
+    <title>WhoCalledIt Top Callers • Clean Active Leaderboard • May 2026</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
-        
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap');
         :root {
-            --bg: #0a0a0a;
-            --card: #111111;
-            --border: #222222;
-            --text: #ededed;
-            --accent: #3b82f6;
-            --green: #22c55e;
-            --orange: #f59e0b;
-            --red: #ef4444;
+            --bg:#080808; --card:#111; --card2:#181818; --border:#242424; --text:#ededed;
+            --muted:#a1a1aa; --faint:#71717a; --accent:#3b82f6; --green:#22c55e;
+            --orange:#f59e0b; --red:#ef4444; --blue2:#93c5fd;
         }
-        
-        body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: 'Inter', system_ui, sans-serif;
-            margin: 0;
-            padding: 40px 20px;
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 42px;
-            font-weight: 600;
-            margin: 0 0 12px 0;
-        }
-        
-        .subtitle {
-            color: #888;
-            font-size: 18px;
-        }
-        
-        .section {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 32px;
-            margin-bottom: 40px;
-        }
-        
-        h2 {
-            font-size: 24px;
-            margin: 0 0 24px 0;
-            color: #fff;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
-        }
-        
-        th {
-            text-align: left;
-            padding: 16px 12px;
-            background: #1a1a1a;
-            font-weight: 600;
-            color: #aaa;
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-        }
-        
-        td {
-            padding: 16px 12px;
-            border-bottom: 1px solid #1f1f1f;
-            vertical-align: top;
-        }
-        
-        tr:hover {
-            background: #1a1a1a;
-        }
-        
-        .handle {
-            font-family: monospace;
-            color: #3b82f6;
-            font-weight: 600;
-            font-size: 15px;
-            text-decoration: none;
-        }
-        
-        .handle:hover {
-            text-decoration: underline;
-        }
-        
-        .tier-a {
-            background: #1e3a8a;
-            color: #93c5fd;
-            padding: 3px 10px;
-            border-radius: 999px;
-            font-size: 12px;
-            font-weight: 700;
-            display: inline-block;
-        }
-        
-        .verdict {
-            padding: 4px 12px;
-            border-radius: 999px;
-            font-size: 12px;
-            font-weight: 700;
-            display: inline-block;
-        }
-        
-        .verdict-legit { background: #052e16; color: #4ade80; }
-        .verdict-watch { background: #451a03; color: #fb923c; }
-        .verdict-noise { background: #3f1f1f; color: #f87171; }
-        
-        .insight-box {
-            background: #1a1a1a;
-            padding: 20px;
-            border-radius: 12px;
-            margin-top: 20px;
-            border-left: 4px solid #3b82f6;
-        }
-        
-        .metric-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .metric-card {
-            background: #1a1a1a;
-            padding: 20px;
-            border-radius: 12px;
-        }
-        
-        .metric-value {
-            font-size: 28px;
-            font-weight: 700;
-            line-height: 1;
-        }
-        
-        .analysis-notes {
-            font-size: 13px;
-            color: #aaa;
-            line-height: 1.5;
-        }
-        
-        .coin-tag {
-            background: #1f2937;
-            color: #93c5fd;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 12px;
-            margin-right: 4px;
-            display: inline-block;
-            margin-bottom: 4px;
-        }
-        
-        .account-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 8px;
-        }
-        
-        .account-header strong {
-            font-size: 18px;
-        }
-        
-        .time-note {
-            background: #1f2937;
-            color: #93c5fd;
-            padding: 8px 14px;
-            border-radius: 6px;
-            font-size: 13px;
-            margin-bottom: 20px;
-            display: inline-block;
-        }
+        * { box-sizing: border-box; }
+        body { background: radial-gradient(circle at top left, #111827 0, var(--bg) 360px); color:var(--text); font-family:'Inter',system-ui,sans-serif; margin:0; padding:40px 20px; line-height:1.6; }
+        .container { max-width:1440px; margin:0 auto; }
+        header { text-align:center; margin-bottom:42px; }
+        h1 { font-family:'Space Grotesk',sans-serif; font-size:44px; line-height:1.05; margin:0 0 12px; }
+        h2 { margin:0 0 22px; font-size:24px; }
+        h3 { margin:26px 0 12px; font-size:18px; color:#fff; }
+        .subtitle { color:var(--muted); font-size:18px; margin:0; }
+        .updated { color:var(--faint); font-size:13px; margin-top:8px; }
+        .section { background:rgba(17,17,17,.94); border:1px solid var(--border); border-radius:18px; padding:30px; margin-bottom:32px; box-shadow:0 20px 60px rgba(0,0,0,.24); }
+        .metric-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:16px; margin-bottom:24px; }
+        .metric-card { background:var(--card2); border:1px solid #232323; padding:18px; border-radius:14px; }
+        .metric-label { color:var(--muted); font-size:13px; }
+        .metric-value { font-size:30px; font-weight:800; line-height:1.1; margin-top:6px; }
+        .metric-sub { color:var(--faint); font-size:12px; margin-top:6px; }
+        .insight-box { background:#151515; border-left:4px solid var(--accent); padding:18px 20px; border-radius:12px; color:#d4d4d8; }
+        .ok-box { border-left-color:var(--green); }
+        .archive-box { border-left-color:var(--orange); }
+        .table-wrap { overflow-x:auto; border-radius:12px; border:1px solid #222; }
+        table { width:100%; border-collapse:collapse; font-size:14px; min-width:880px; }
+        th { text-align:left; padding:13px 12px; background:#1b1b1b; color:#b6b6bd; font-weight:700; border-bottom:1px solid var(--border); position:sticky; top:0; }
+        td { padding:13px 12px; border-bottom:1px solid #202020; vertical-align:top; }
+        tr:hover { background:#171717; }
+        .rank { color:#9ca3af; font-weight:700; width:58px; }
+        .handle { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; color:#60a5fa; font-weight:700; text-decoration:none; white-space:nowrap; }
+        .handle:hover { text-decoration:underline; }
+        .tier-a, .tier-b { padding:3px 10px; border-radius:999px; font-size:12px; font-weight:800; display:inline-block; }
+        .tier-a { background:#1e3a8a; color:#bfdbfe; }
+        .tier-b { background:#064e3b; color:#86efac; }
+        .coin-tag { background:#1f2937; color:#bfdbfe; padding:2px 8px; border-radius:6px; font-size:12px; margin:0 4px 4px 0; display:inline-block; white-space:nowrap; }
+        .coin-tag.muted { color:#d1d5db; background:#27272a; }
+        .analysis-notes { color:#a1a1aa; font-size:13px; line-height:1.45; }
+        .muted { color:var(--muted); }
+        .footer { text-align:center; color:#71717a; font-size:12px; margin:36px 0 8px; }
+        ul { margin:10px 0 0 20px; padding:0; }
+        li { margin:6px 0; }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
             <h1>WhoCalledIt Top Callers</h1>
-            <p class="subtitle">Deep Twitter Analysis • Real Handles from Database • May 2026</p>
-            <p style="color:#666; margin-top: 8px;">Analysis performed on top accounts with ≥2 Tier A hits</p>
+            <p class="subtitle">Clean active caller leaderboard after service/feed/signal quarantine</p>
+            <p class="updated">Generated 2026-05-20 17:50 UTC from the migrated AlphaDash lookup DB. Historical noisy rows are archived, not deleted.</p>
         </header>
 
-        <div class="section">
-            <h2>Analysis Summary</h2>
-            
+        <section class="section">
+            <h2>Quality-gated summary</h2>
             <div class="metric-grid">
-                <div class="metric-card">
-                    <div style="color:#888; font-size:13px;">Accounts Analyzed</div>
-                    <div class="metric-value">15</div>
-                    <div style="color:#666; font-size:13px;">Top by Tier A hits</div>
-                </div>
-                <div class="metric-card">
-                    <div style="color:#888; font-size:13px;">Strong / Legit</div>
-                    <div class="metric-value" style="color:#4ade80;">5</div>
-                </div>
-                <div class="metric-card">
-                    <div style="color:#888; font-size:13px;">Watch / Mixed</div>
-                    <div class="metric-value" style="color:#fb923c;">6</div>
-                </div>
-                <div class="metric-card">
-                    <div style="color:#888; font-size:13px;">High Noise Risk</div>
-                    <div class="metric-value" style="color:#f87171;">4</div>
-                </div>
+                <div class="metric-card"><div class="metric-label">Active caller rows</div><div class="metric-value">1,880</div><div class="metric-sub">Non-quarantined evidence rows</div></div>
+                <div class="metric-card"><div class="metric-label">Active handles</div><div class="metric-value">884</div><div class="metric-sub">Still eligible for discovery/ranking</div></div>
+                <div class="metric-card"><div class="metric-label">Active Tier A hits</div><div class="metric-value" style="color:var(--green)">324</div><div class="metric-sub">Counted by public surfaces</div></div>
+                <div class="metric-card"><div class="metric-label">Archived noisy rows</div><div class="metric-value" style="color:var(--orange)">91</div><div class="metric-sub">18 service/feed/signal handles</div></div>
             </div>
-
-            <div class="insight-box">
-                <strong>Key Finding:</strong> Out of the top 15 accounts with the highest Tier A counts, only about one-third show strong organic trader characteristics. 
-                Many high-volume accounts have explicit "AI", "Automated", "Booster", or "Signals" in their names, which often correlates with lower-quality or automated activity.
+            <div class="insight-box ok-box">
+                <strong>Result:</strong> active ranking now excludes rows with <code>quality_quarantined = 1</code>. The old noisy corpus is preserved as an archive/regression set, while future caller hits are flagged at scoring/worker time before they can affect top-caller reputation.
+                <br><br><strong>Known-noise check:</strong> None detected in the active top-caller set.
             </div>
-        </div>
+        </section>
 
-        <div class="section">
-            <h2>Detailed Analysis — Top 15 Accounts</h2>
-            
-            <table>
-                <thead>
+        <section class="section">
+            <h2>Clean active spotlight — strongest remaining callers</h2>
+            <p class="analysis-notes">Requires at least 3 active hits and at least 3 active Tier A hits. This intentionally favors higher-confidence human-like callers over thin two-hit artifacts.</p>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>Rank</th><th>Handle</th><th>Tier A</th><th>A/B Hits</th><th>Total Rows</th><th>Hit Rate</th><th>Avg Gain</th><th>Max Gain</th><th>Tokens / Contracts</th><th>Last Seen</th></tr></thead>
+                    <tbody>
                     <tr>
-                        <th>Handle</th>
-                        <th>Display Name</th>
-                        <th>Tier A</th>
-                        <th>Verdict</th>
-                        <th>Key Observations</th>
-                        <th>Risk</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><a href="https://x.com/chain_alphax" target="_blank" class="handle">@chain_alphax</a></td>
-                        <td>Chain Alpha</td>
-                        <td><span class="tier-a">10</span></td>
-                        <td><span class="verdict verdict-legit">Strong</span></td>
-                        <td class="analysis-notes">Highest volume account. Consistent Tier A across multiple tokens. Name suggests focused alpha focus rather than pure promotion.</td>
-                        <td>Low</td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://x.com/cherrysixx69" target="_blank" class="handle">@cherrysixx69</a></td>
-                        <td>CherrySixx 🐸</td>
-                        <td><span class="tier-a">8</span></td>
-                        <td><span class="verdict verdict-watch">Watch</span></td>
-                        <td class="analysis-notes">Very high hit rate. Meme-style name but strong numbers. Needs deeper thesis check on recent calls.</td>
-                        <td>Medium</td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://x.com/kek0x" target="_blank" class="handle">@kek0x</a></td>
-                        <td>kek</td>
-                        <td><span class="tier-a">7</span></td>
-                        <td><span class="verdict verdict-legit">Strong</span></td>
-                        <td class="analysis-notes">Short, classic crypto handle. Strong recent performance. Likely a real active trader.</td>
-                        <td>Low</td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://x.com/cexscan" target="_blank" class="handle">@cexscan</a></td>
-                        <td>cexscan</td>
+                        <td class="rank">#1</td>
+                        <td><a href="https://x.com/kek0x" target="_blank" rel="noopener" class="handle">@kek0x</a></td>
                         <td><span class="tier-a">6</span></td>
-                        <td><span class="verdict verdict-legit">Strong</span></td>
-                        <td class="analysis-notes">Very recent activity. Name suggests on-chain scanning focus. Good timing on several calls.</td>
-                        <td>Low</td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>86%</td>
+                        <td>+4972.0%</td>
+                        <td>+4972.0%</td>
+                        <td><span class="coin-tag">GIGA</span><span class="coin-tag">PEPE</span><span class="coin-tag">0x698250…311933</span></td>
+                        <td class="analysis-notes">2026-05-18T14:15:22.621099+00:00</td>
                     </tr>
                     <tr>
-                        <td><a href="https://x.com/ai4alpha" target="_blank" class="handle">@ai4alpha</a></td>
-                        <td>Ai4Alpha</td>
+                        <td class="rank">#2</td>
+                        <td><a href="https://x.com/doncryptonn" target="_blank" rel="noopener" class="handle">@doncryptonn</a></td>
                         <td><span class="tier-a">5</span></td>
-                        <td><span class="verdict verdict-legit">Strong</span></td>
-                        <td class="analysis-notes">Clear positioning around AI + alpha. Multiple high-quality hits. Profile appears professional.</td>
-                        <td>Low</td>
+                        <td>5</td>
+                        <td>7</td>
+                        <td>71%</td>
+                        <td>+441.0%</td>
+                        <td>+546.0%</td>
+                        <td><span class="coin-tag">VVV</span><span class="coin-tag">PEPE</span><span class="coin-tag">0x698250…311933</span><span class="coin-tag">0xacfE60…cC21bf</span></td>
+                        <td class="analysis-notes">2026-05-20T07:42:33.363243+00:00</td>
                     </tr>
                     <tr>
-                        <td><a href="https://x.com/chrismiles222" target="_blank" class="handle">@chrismiles222</a></td>
-                        <td>Chris</td>
-                        <td><span class="tier-a">4</span></td>
-                        <td><span class="verdict verdict-legit">Strong</span></td>
-                        <td class="analysis-notes">Real name pattern. Often correlates with higher quality individual traders rather than services.</td>
-                        <td>Low</td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://x.com/lumiagent" target="_blank" class="handle">@lumiagent</a></td>
-                        <td>LUMI AGENT ⚡️</td>
-                        <td><span class="tier-a">4</span></td>
-                        <td><span class="verdict verdict-watch">Watch</span></td>
-                        <td class="analysis-notes">Agent-style branding. Showing real hits but "agent" naming can sometimes indicate automation.</td>
-                        <td>Medium</td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://x.com/agentnyla" target="_blank" class="handle">@agentnyla</a></td>
-                        <td>NYLA</td>
-                        <td><span class="tier-a">4</span></td>
-                        <td><span class="verdict verdict-watch">Watch</span></td>
-                        <td class="analysis-notes">Agent branding again. Need to verify if it's a real person or tool.</td>
-                        <td>Medium</td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://x.com/grand_masterxx" target="_blank" class="handle">@grand_masterxx</a></td>
-                        <td>Grand Master💹🧲🧠🤏</td>
-                        <td><span class="tier-a">7</span></td>
-                        <td><span class="verdict verdict-watch">Watch</span></td>
-                        <td class="analysis-notes">High volume but heavy emoji use and "master" branding. Common in signal-style accounts.</td>
-                        <td>Medium</td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://x.com/buythedipfagot" target="_blank" class="handle">@buythedipfagot</a></td>
-                        <td>OnChainBro 🦖</td>
-                        <td><span class="tier-a">6</span></td>
-                        <td><span class="verdict verdict-watch">Watch</span></td>
-                        <td class="analysis-notes">Edgy name but solid hit count. Mixed signals — needs thesis review.</td>
-                        <td>Medium</td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://x.com/web3automated" target="_blank" class="handle">@web3automated</a></td>
-                        <td>Web 3 Automated</td>
-                        <td><span class="tier-a">7</span></td>
-                        <td><span class="verdict verdict-noise">Noise</span></td>
-                        <td class="analysis-notes">Explicit "Automated" in name. High volume but very likely bot or volume service.</td>
-                        <td>High</td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://x.com/orbitt_ai" target="_blank" class="handle">@orbitt_ai</a></td>
-                        <td>Orbitt Volume Booster</td>
-                        <td><span class="tier-a">7</span></td>
-                        <td><span class="verdict verdict-noise">Noise</span></td>
-                        <td class="analysis-notes">"Volume Booster" in name is a strong red flag for paid promotion activity.</td>
-                        <td>High</td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://x.com/memecoin_review" target="_blank" class="handle">@memecoin_review</a></td>
-                        <td>MemeCoin Reviews</td>
-                        <td><span class="tier-a">6</span></td>
-                        <td><span class="verdict verdict-noise">Noise</span></td>
-                        <td class="analysis-notes">Review/service account style. Often promotes rather than calls independently.</td>
-                        <td>High</td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://x.com/coinwingsai" target="_blank" class="handle">@coinwingsai</a></td>
-                        <td>CoinWings AI</td>
+                        <td class="rank">#3</td>
+                        <td><a href="https://x.com/onchainpolice" target="_blank" rel="noopener" class="handle">@onchainpolice</a></td>
                         <td><span class="tier-a">5</span></td>
-                        <td><span class="verdict verdict-noise">Noise</span></td>
-                        <td class="analysis-notes">Heavy AI branding + "CoinWings" style often indicates paid signal or bot activity.</td>
-                        <td>High</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>83%</td>
+                        <td>+648.8%</td>
+                        <td>+648.8%</td>
+                        <td><span class="coin-tag">PEPE</span><span class="coin-tag">0x698250…311933</span><span class="coin-tag">0x389825…262b9B</span></td>
+                        <td class="analysis-notes">2026-05-18T14:15:22.600883+00:00</td>
                     </tr>
                     <tr>
-                        <td><a href="https://x.com/whalesignals_" target="_blank" class="handle">@whalesignals_</a></td>
-                        <td>Whale Signals 🐳</td>
-                        <td><span class="tier-a">4</span></td>
-                        <td><span class="verdict verdict-noise">Noise</span></td>
-                        <td class="analysis-notes">Classic "Signals" naming. Very high likelihood of being a paid group or aggregator.</td>
-                        <td>High</td>
+                        <td class="rank">#4</td>
+                        <td><a href="https://x.com/ms_clipsi" target="_blank" rel="noopener" class="handle">@ms_clipsi</a></td>
+                        <td><span class="tier-a">5</span></td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>83%</td>
+                        <td>+2495.1%</td>
+                        <td>+2495.1%</td>
+                        <td><span class="coin-tag">AURA</span><span class="coin-tag">DtR4D9Ft…Rdk9B2</span></td>
+                        <td class="analysis-notes">2026-05-18T14:07:22.136297+00:00</td>
                     </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- UPDATED: Recent Activity Section - Only Priority + Watch (Last 72 Hours) -->
-        <div class="section">
-            <h2>Recent Activity — Last 72 Hours (Priority &amp; Watch Accounts)</h2>
-            
-            <div class="time-note">
-                Current time: <strong>May 20, 2026 09:35 UTC</strong> — Only showing activity from the last 72 hours (since May 17, 2026).
+                    <tr>
+                        <td class="rank">#5</td>
+                        <td><a href="https://x.com/realwizard101" target="_blank" rel="noopener" class="handle">@realwizard101</a></td>
+                        <td><span class="tier-a">5</span></td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>100%</td>
+                        <td>+26.2%</td>
+                        <td>+44.3%</td>
+                        <td><span class="coin-tag">0xDB6Ba5…e33411</span></td>
+                        <td class="analysis-notes">2026-05-20T15:16:07.012155+00:00</td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#6</td>
+                        <td><a href="https://x.com/arbitragesniper" target="_blank" rel="noopener" class="handle">@arbitragesniper</a></td>
+                        <td><span class="tier-a">4</span></td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>80%</td>
+                        <td>+522.3%</td>
+                        <td>+540.0%</td>
+                        <td><span class="coin-tag">PEPE</span><span class="coin-tag">0x698250…311933</span></td>
+                        <td class="analysis-notes">2026-05-18T14:15:22.580323+00:00</td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#7</td>
+                        <td><a href="https://x.com/cryptgenuis" target="_blank" rel="noopener" class="handle">@cryptgenuis</a></td>
+                        <td><span class="tier-a">3</span></td>
+                        <td>3</td>
+                        <td>5</td>
+                        <td>60%</td>
+                        <td>+106.3%</td>
+                        <td>+106.3%</td>
+                        <td><span class="coin-tag">HUMANITY</span><span class="coin-tag">0xDB6Ba5…e33411</span></td>
+                        <td class="analysis-notes">2026-05-20T15:16:06.925426+00:00</td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#8</td>
+                        <td><a href="https://x.com/timjswan" target="_blank" rel="noopener" class="handle">@timjswan</a></td>
+                        <td><span class="tier-a">3</span></td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td>100%</td>
+                        <td>+77.2%</td>
+                        <td>+77.2%</td>
+                        <td><span class="coin-tag">Dz9mQ9Nz…8Mbonk</span><span class="coin-tag">USELESS</span></td>
+                        <td class="analysis-notes">2026-05-16T16:24:11.548804+00:00</td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#9</td>
+                        <td><a href="https://x.com/kingjasonfoster" target="_blank" rel="noopener" class="handle">@kingjasonfoster</a></td>
+                        <td><span class="tier-a">3</span></td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td>100%</td>
+                        <td>+89.4%</td>
+                        <td>+89.4%</td>
+                        <td><span class="coin-tag">Dz9mQ9Nz…8Mbonk</span><span class="coin-tag">USELESS</span></td>
+                        <td class="analysis-notes">2026-05-16T16:24:11.525004+00:00</td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#10</td>
+                        <td><a href="https://x.com/jovinskn" target="_blank" rel="noopener" class="handle">@jovinskn</a></td>
+                        <td><span class="tier-a">3</span></td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td>100%</td>
+                        <td>+807.9%</td>
+                        <td>+807.9%</td>
+                        <td><span class="coin-tag">OPENSERV</span><span class="coin-tag">0x40e3d1…E28042</span></td>
+                        <td class="analysis-notes">2026-05-16T14:12:15.379325+00:00</td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#11</td>
+                        <td><a href="https://x.com/biglin666666" target="_blank" rel="noopener" class="handle">@biglin666666</a></td>
+                        <td><span class="tier-a">3</span></td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td>100%</td>
+                        <td>+910.2%</td>
+                        <td>+910.2%</td>
+                        <td><span class="coin-tag">OPENSERV</span><span class="coin-tag">0x40e3d1…E28042</span></td>
+                        <td class="analysis-notes">2026-05-16T14:12:15.322009+00:00</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
+        </section>
 
-            <div class="insight-box">
-                <strong>Focus:</strong> Only showing accounts from the <span style="color:#4ade80">Priority Watchlist</span> and <span style="color:#fb923c">Monitor Closely</span> groups. 
-                Filtering for recent calls (last 72 hours) that have potential to become Tier A or B.
+        <section class="section">
+            <h2>Active leaderboard candidates</h2>
+            <p class="analysis-notes">Top active callers with at least 2 A/B pre-move hits after quarantine filtering. This wider table is for monitoring; the spotlight table above is the stricter candidate list.</p>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>Rank</th><th>Handle</th><th>Tier A</th><th>Tier B</th><th>A/B Hits</th><th>Total Rows</th><th>Evidence Tokens</th></tr></thead>
+                    <tbody>
+                    <tr>
+                        <td class="rank">#1</td>
+                        <td><a href="https://x.com/kek0x" target="_blank" rel="noopener" class="handle">@kek0x</a></td>
+                        <td>6</td>
+                        <td>0</td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td><span class="coin-tag">GIGA</span><span class="coin-tag">PEPE</span><span class="coin-tag">0x698250…311933</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#2</td>
+                        <td><a href="https://x.com/doncryptonn" target="_blank" rel="noopener" class="handle">@doncryptonn</a></td>
+                        <td>5</td>
+                        <td>0</td>
+                        <td>5</td>
+                        <td>7</td>
+                        <td><span class="coin-tag">VVV</span><span class="coin-tag">PEPE</span><span class="coin-tag">0x698250…311933</span><span class="coin-tag">0xacfE60…cC21bf</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#3</td>
+                        <td><a href="https://x.com/onchainpolice" target="_blank" rel="noopener" class="handle">@onchainpolice</a></td>
+                        <td>5</td>
+                        <td>0</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td><span class="coin-tag">PEPE</span><span class="coin-tag">0x698250…311933</span><span class="coin-tag">0x389825…262b9B</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#4</td>
+                        <td><a href="https://x.com/ms_clipsi" target="_blank" rel="noopener" class="handle">@ms_clipsi</a></td>
+                        <td>5</td>
+                        <td>0</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td><span class="coin-tag">AURA</span><span class="coin-tag">DtR4D9Ft…Rdk9B2</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#5</td>
+                        <td><a href="https://x.com/realwizard101" target="_blank" rel="noopener" class="handle">@realwizard101</a></td>
+                        <td>5</td>
+                        <td>0</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td><span class="coin-tag">0xDB6Ba5…e33411</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#6</td>
+                        <td><a href="https://x.com/arbitragesniper" target="_blank" rel="noopener" class="handle">@arbitragesniper</a></td>
+                        <td>4</td>
+                        <td>0</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td><span class="coin-tag">PEPE</span><span class="coin-tag">0x698250…311933</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#7</td>
+                        <td><a href="https://x.com/cryptgenuis" target="_blank" rel="noopener" class="handle">@cryptgenuis</a></td>
+                        <td>3</td>
+                        <td>0</td>
+                        <td>3</td>
+                        <td>5</td>
+                        <td><span class="coin-tag">HUMANITY</span><span class="coin-tag">0xDB6Ba5…e33411</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#8</td>
+                        <td><a href="https://x.com/timjswan" target="_blank" rel="noopener" class="handle">@timjswan</a></td>
+                        <td>3</td>
+                        <td>0</td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td><span class="coin-tag">Dz9mQ9Nz…8Mbonk</span><span class="coin-tag">USELESS</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#9</td>
+                        <td><a href="https://x.com/kingjasonfoster" target="_blank" rel="noopener" class="handle">@kingjasonfoster</a></td>
+                        <td>3</td>
+                        <td>0</td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td><span class="coin-tag">Dz9mQ9Nz…8Mbonk</span><span class="coin-tag">USELESS</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#10</td>
+                        <td><a href="https://x.com/jovinskn" target="_blank" rel="noopener" class="handle">@jovinskn</a></td>
+                        <td>3</td>
+                        <td>0</td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td><span class="coin-tag">OPENSERV</span><span class="coin-tag">0x40e3d1…E28042</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#11</td>
+                        <td><a href="https://x.com/biglin666666" target="_blank" rel="noopener" class="handle">@biglin666666</a></td>
+                        <td>3</td>
+                        <td>0</td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td><span class="coin-tag">OPENSERV</span><span class="coin-tag">0x40e3d1…E28042</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#12</td>
+                        <td><a href="https://x.com/scalpingx" target="_blank" rel="noopener" class="handle">@scalpingx</a></td>
+                        <td>2</td>
+                        <td>2</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td><span class="coin-tag">0xDB6Ba5…e33411</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#13</td>
+                        <td><a href="https://x.com/krasnovcrypto" target="_blank" rel="noopener" class="handle">@krasnovcrypto</a></td>
+                        <td>2</td>
+                        <td>2</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td><span class="coin-tag">0xDB6Ba5…e33411</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#14</td>
+                        <td><a href="https://x.com/oct_gems" target="_blank" rel="noopener" class="handle">@oct_gems</a></td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td><span class="coin-tag">VVV</span><span class="coin-tag">0x22aF33…c76F3b</span><span class="coin-tag">0xacfE60…cC21bf</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#15</td>
+                        <td><a href="https://x.com/saizyo_crypto" target="_blank" rel="noopener" class="handle">@saizyo_crypto</a></td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td><span class="coin-tag">LAB</span><span class="coin-tag">0x7ec43C…25593A</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#16</td>
+                        <td><a href="https://x.com/web3_valuescan" target="_blank" rel="noopener" class="handle">@web3_valuescan</a></td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>2</td>
+                        <td>5</td>
+                        <td><span class="coin-tag">0xDB6Ba5…e33411</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#17</td>
+                        <td><a href="https://x.com/qazaxli3535" target="_blank" rel="noopener" class="handle">@qazaxli3535</a></td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>2</td>
+                        <td>5</td>
+                        <td><span class="coin-tag">0xDB6Ba5…e33411</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#18</td>
+                        <td><a href="https://x.com/1desydonald" target="_blank" rel="noopener" class="handle">@1desydonald</a></td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>2</td>
+                        <td>5</td>
+                        <td><span class="coin-tag">0xDB6Ba5…e33411</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#19</td>
+                        <td><a href="https://x.com/master_binance" target="_blank" rel="noopener" class="handle">@master_binance</a></td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>2</td>
+                        <td>5</td>
+                        <td><span class="coin-tag">0xDB6Ba5…e33411</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#20</td>
+                        <td><a href="https://x.com/nonkyc_exchange" target="_blank" rel="noopener" class="handle">@nonkyc_exchange</a></td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>2</td>
+                        <td>5</td>
+                        <td><span class="coin-tag">0xDB6Ba5…e33411</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#21</td>
+                        <td><a href="https://x.com/stevehodls" target="_blank" rel="noopener" class="handle">@stevehodls</a></td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>2</td>
+                        <td>4</td>
+                        <td><span class="coin-tag">0xDB6Ba5…e33411</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#22</td>
+                        <td><a href="https://x.com/cryptoscope75" target="_blank" rel="noopener" class="handle">@cryptoscope75</a></td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>2</td>
+                        <td>4</td>
+                        <td><span class="coin-tag">0xDB6Ba5…e33411</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#23</td>
+                        <td><a href="https://x.com/cryptork561" target="_blank" rel="noopener" class="handle">@cryptork561</a></td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>2</td>
+                        <td>4</td>
+                        <td><span class="coin-tag">0xDB6Ba5…e33411</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#24</td>
+                        <td><a href="https://x.com/aicryptopattern" target="_blank" rel="noopener" class="handle">@aicryptopattern</a></td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td><span class="coin-tag">0x22aF33…c76F3b</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#25</td>
+                        <td><a href="https://x.com/cherrysixx69" target="_blank" rel="noopener" class="handle">@cherrysixx69</a></td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td><span class="coin-tag">WOJAK</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#26</td>
+                        <td><a href="https://x.com/alexmitchdc" target="_blank" rel="noopener" class="handle">@alexmitchdc</a></td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>2</td>
+                        <td>2</td>
+                        <td><span class="coin-tag">GITLAWB</span><span class="coin-tag">0x5F980D…13DBa3</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#27</td>
+                        <td><a href="https://x.com/mnosh06" target="_blank" rel="noopener" class="handle">@mnosh06</a></td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>2</td>
+                        <td>2</td>
+                        <td><span class="coin-tag">0xd7bc6a…6e1BA3</span><span class="coin-tag">0x5F980D…13DBa3</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#28</td>
+                        <td><a href="https://x.com/crypto_pach" target="_blank" rel="noopener" class="handle">@crypto_pach</a></td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>2</td>
+                        <td>2</td>
+                        <td><span class="coin-tag">GITLAWB</span><span class="coin-tag">0x5F980D…13DBa3</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#29</td>
+                        <td><a href="https://x.com/boredtrolll" target="_blank" rel="noopener" class="handle">@boredtrolll</a></td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>2</td>
+                        <td>2</td>
+                        <td><span class="coin-tag">0xf8ebf4…B2eB3A</span></td>
+                    </tr>
+                    <tr>
+                        <td class="rank">#30</td>
+                        <td><a href="https://x.com/wheelerrdealerr" target="_blank" rel="noopener" class="handle">@wheelerrdealerr</a></td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>2</td>
+                        <td>2</td>
+                        <td><span class="coin-tag">WOJAK</span></td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
+        </section>
 
-            <!-- Strong Accounts -->
-            <div style="margin-top: 30px;">
-                <h3 style="color:#4ade80; margin-bottom: 16px;">Strong / Priority Accounts</h3>
-                
-                <div class="account-header">
-                    <a href="https://x.com/chain_alphax" target="_blank" class="handle" style="font-size:18px;">@chain_alphax</a>
-                    <span class="verdict verdict-legit">Strong</span>
-                </div>
-                <p><strong>Recent calls (last 72h):</strong> <span class="coin-tag">$AURA</span> <span class="coin-tag">$VVV</span></p>
-                <p class="analysis-notes">Posted about $AURA and $VVV on Base in the last 2 days. Still showing volume interest. Worth watching for A-tier potential.</p>
-
-                <div class="account-header" style="margin-top: 24px;">
-                    <a href="https://x.com/kek0x" target="_blank" class="handle" style="font-size:18px;">@kek0x</a>
-                    <span class="verdict verdict-legit">Strong</span>
-                </div>
-                <p><strong>Recent calls (last 72h):</strong> <span class="coin-tag">$PEPE</span></p>
-                <p class="analysis-notes">Mentioned $PEPE with new catalyst discussion on May 18. Lower frequency but higher quality.</p>
-
-                <div class="account-header" style="margin-top: 24px;">
-                    <a href="https://x.com/cexscan" target="_blank" class="handle" style="font-size:18px;">@cexscan</a>
-                    <span class="verdict verdict-legit">Strong</span>
-                </div>
-                <p><strong>Recent calls (last 72h):</strong> <span class="coin-tag">$VIRTUAL</span></p>
-                <p class="analysis-notes">Posted about $VIRTUAL on May 19. Scanning for AI-related tokens with potential CEX interest.</p>
-
-                <div class="account-header" style="margin-top: 24px;">
-                    <a href="https://x.com/ai4alpha" target="_blank" class="handle" style="font-size:18px;">@ai4alpha</a>
-                    <span class="verdict verdict-legit">Strong</span>
-                </div>
-                <p><strong>Recent calls (last 72h):</strong> <span class="coin-tag">$VIRTUAL</span> <span class="coin-tag">$TAO</span></p>
-                <p class="analysis-notes">Active on AI narrative tokens in the last 48 hours. Posting detailed threads — good B-tier candidate.</p>
+        <section class="section">
+            <h2>Recent active A/B hits</h2>
+            <p class="analysis-notes">Most recent non-quarantined evidence rows. These are the kinds of rows still allowed to influence active reputation.</p>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>Handle</th><th>Token / Query</th><th>Tier</th><th>Gain</th><th>Chain</th><th>Recorded</th></tr></thead>
+                    <tbody>
+                    <tr>
+                        <td><a href="https://x.com/giorgio_costa" target="_blank" rel="noopener" class="handle">@giorgio_costa</a></td>
+                        <td>0xDB6Ba5D510F114F9b2eA08BEa7d30e32eEe33411</td>
+                        <td><span class="tier-b">B</span></td>
+                        <td>—</td>
+                        <td>eth</td>
+                        <td class="analysis-notes">2026-05-20T15:16:07.686661+00:00</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/node_park" target="_blank" rel="noopener" class="handle">@node_park</a></td>
+                        <td>0xDB6Ba5D510F114F9b2eA08BEa7d30e32eEe33411</td>
+                        <td><span class="tier-b">B</span></td>
+                        <td>—</td>
+                        <td>eth</td>
+                        <td class="analysis-notes">2026-05-20T15:16:07.675307+00:00</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/web3navalguy" target="_blank" rel="noopener" class="handle">@web3navalguy</a></td>
+                        <td>0xDB6Ba5D510F114F9b2eA08BEa7d30e32eEe33411</td>
+                        <td><span class="tier-b">B</span></td>
+                        <td>—</td>
+                        <td>eth</td>
+                        <td class="analysis-notes">2026-05-20T15:16:07.661982+00:00</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/farumcyt" target="_blank" rel="noopener" class="handle">@farumcyt</a></td>
+                        <td>0xDB6Ba5D510F114F9b2eA08BEa7d30e32eEe33411</td>
+                        <td><span class="tier-b">B</span></td>
+                        <td>—</td>
+                        <td>eth</td>
+                        <td class="analysis-notes">2026-05-20T15:16:07.648669+00:00</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/arcvipzzz" target="_blank" rel="noopener" class="handle">@arcvipzzz</a></td>
+                        <td>0xDB6Ba5D510F114F9b2eA08BEa7d30e32eEe33411</td>
+                        <td><span class="tier-b">B</span></td>
+                        <td>—</td>
+                        <td>eth</td>
+                        <td class="analysis-notes">2026-05-20T15:16:07.633413+00:00</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/odailychina" target="_blank" rel="noopener" class="handle">@odailychina</a></td>
+                        <td>0xDB6Ba5D510F114F9b2eA08BEa7d30e32eEe33411</td>
+                        <td><span class="tier-b">B</span></td>
+                        <td>—</td>
+                        <td>eth</td>
+                        <td class="analysis-notes">2026-05-20T15:16:07.620244+00:00</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/hashnewshk" target="_blank" rel="noopener" class="handle">@hashnewshk</a></td>
+                        <td>0xDB6Ba5D510F114F9b2eA08BEa7d30e32eEe33411</td>
+                        <td><span class="tier-b">B</span></td>
+                        <td>—</td>
+                        <td>eth</td>
+                        <td class="analysis-notes">2026-05-20T15:16:07.606005+00:00</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/bitcool1234" target="_blank" rel="noopener" class="handle">@bitcool1234</a></td>
+                        <td>0xDB6Ba5D510F114F9b2eA08BEa7d30e32eEe33411</td>
+                        <td><span class="tier-b">B</span></td>
+                        <td>—</td>
+                        <td>eth</td>
+                        <td class="analysis-notes">2026-05-20T15:16:07.590880+00:00</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/callmeebad01" target="_blank" rel="noopener" class="handle">@callmeebad01</a></td>
+                        <td>0xDB6Ba5D510F114F9b2eA08BEa7d30e32eEe33411</td>
+                        <td><span class="tier-b">B</span></td>
+                        <td>—</td>
+                        <td>eth</td>
+                        <td class="analysis-notes">2026-05-20T15:16:07.580895+00:00</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/specialone_tra" target="_blank" rel="noopener" class="handle">@specialone_tra</a></td>
+                        <td>0xDB6Ba5D510F114F9b2eA08BEa7d30e32eEe33411</td>
+                        <td><span class="tier-b">B</span></td>
+                        <td>—</td>
+                        <td>eth</td>
+                        <td class="analysis-notes">2026-05-20T15:16:07.569441+00:00</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/alucardtrades" target="_blank" rel="noopener" class="handle">@alucardtrades</a></td>
+                        <td>0xDB6Ba5D510F114F9b2eA08BEa7d30e32eEe33411</td>
+                        <td><span class="tier-b">B</span></td>
+                        <td>—</td>
+                        <td>eth</td>
+                        <td class="analysis-notes">2026-05-20T15:16:07.558836+00:00</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/augustcool" target="_blank" rel="noopener" class="handle">@augustcool</a></td>
+                        <td>0xDB6Ba5D510F114F9b2eA08BEa7d30e32eEe33411</td>
+                        <td><span class="tier-b">B</span></td>
+                        <td>—</td>
+                        <td>eth</td>
+                        <td class="analysis-notes">2026-05-20T15:16:07.547555+00:00</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/kaanchart" target="_blank" rel="noopener" class="handle">@kaanchart</a></td>
+                        <td>0xDB6Ba5D510F114F9b2eA08BEa7d30e32eEe33411</td>
+                        <td><span class="tier-b">B</span></td>
+                        <td>—</td>
+                        <td>eth</td>
+                        <td class="analysis-notes">2026-05-20T15:16:07.535348+00:00</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/abdur_rahim9096" target="_blank" rel="noopener" class="handle">@abdur_rahim9096</a></td>
+                        <td>0xDB6Ba5D510F114F9b2eA08BEa7d30e32eEe33411</td>
+                        <td><span class="tier-b">B</span></td>
+                        <td>—</td>
+                        <td>eth</td>
+                        <td class="analysis-notes">2026-05-20T15:16:07.523255+00:00</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/mrsparks1989" target="_blank" rel="noopener" class="handle">@mrsparks1989</a></td>
+                        <td>0xDB6Ba5D510F114F9b2eA08BEa7d30e32eEe33411</td>
+                        <td><span class="tier-b">B</span></td>
+                        <td>—</td>
+                        <td>eth</td>
+                        <td class="analysis-notes">2026-05-20T15:16:07.507459+00:00</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/cryptonavi399" target="_blank" rel="noopener" class="handle">@cryptonavi399</a></td>
+                        <td>0xDB6Ba5D510F114F9b2eA08BEa7d30e32eEe33411</td>
+                        <td><span class="tier-b">B</span></td>
+                        <td>+53.9%</td>
+                        <td>eth</td>
+                        <td class="analysis-notes">2026-05-20T15:16:07.489846+00:00</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/soulreeper01" target="_blank" rel="noopener" class="handle">@soulreeper01</a></td>
+                        <td>0xDB6Ba5D510F114F9b2eA08BEa7d30e32eEe33411</td>
+                        <td><span class="tier-b">B</span></td>
+                        <td>+94.2%</td>
+                        <td>eth</td>
+                        <td class="analysis-notes">2026-05-20T15:16:07.477732+00:00</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/alphamavenhf" target="_blank" rel="noopener" class="handle">@alphamavenhf</a></td>
+                        <td>0xDB6Ba5D510F114F9b2eA08BEa7d30e32eEe33411</td>
+                        <td><span class="tier-b">B</span></td>
+                        <td>+98.6%</td>
+                        <td>eth</td>
+                        <td class="analysis-notes">2026-05-20T15:16:07.464790+00:00</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/rvtradez" target="_blank" rel="noopener" class="handle">@rvtradez</a></td>
+                        <td>0xDB6Ba5D510F114F9b2eA08BEa7d30e32eEe33411</td>
+                        <td><span class="tier-b">B</span></td>
+                        <td>+104.0%</td>
+                        <td>eth</td>
+                        <td class="analysis-notes">2026-05-20T15:16:07.453511+00:00</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/dynexara" target="_blank" rel="noopener" class="handle">@dynexara</a></td>
+                        <td>0xDB6Ba5D510F114F9b2eA08BEa7d30e32eEe33411</td>
+                        <td><span class="tier-b">B</span></td>
+                        <td>+105.0%</td>
+                        <td>eth</td>
+                        <td class="analysis-notes">2026-05-20T15:16:07.440491+00:00</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
+        </section>
 
-            <!-- Watch Accounts -->
-            <div style="margin-top: 40px;">
-                <h3 style="color:#fb923c; margin-bottom: 16px;">Watch / Monitor Closely Accounts</h3>
-                
-                <div class="account-header">
-                    <a href="https://x.com/cherrysixx69" target="_blank" class="handle" style="font-size:18px;">@cherrysixx69</a>
-                    <span class="verdict verdict-watch">Watch</span>
-                </div>
-                <p><strong>Recent calls (last 72h):</strong> <span class="coin-tag">$AURA</span></p>
-                <p class="analysis-notes">Posted about $AURA on May 18–19. Some overlap with stronger accounts. Moderate conviction.</p>
-
-                <div class="account-header" style="margin-top: 24px;">
-                    <a href="https://x.com/lumiagent" target="_blank" class="handle" style="font-size:18px;">@lumiagent</a>
-                    <span class="verdict verdict-watch">Watch</span>
-                </div>
-                <p><strong>Recent calls (last 72h):</strong> <span class="coin-tag">$VIRTUAL</span></p>
-                <p class="analysis-notes">Mentioned $VIRTUAL in the last 48 hours. Agent-style account with mixed quality.</p>
-
-                <div class="account-header" style="margin-top: 24px;">
-                    <a href="https://x.com/grand_masterxx" target="_blank" class="handle" style="font-size:18px;">@grand_masterxx</a>
-                    <span class="verdict verdict-watch">Watch</span>
-                </div>
-                <p><strong>Recent calls (last 72h):</strong> <span class="coin-tag">$WIF</span></p>
-                <p class="analysis-notes">Posted about $WIF on May 18. High activity but heavy meme branding.</p>
+        <section class="section">
+            <h2>Archived noise corpus</h2>
+            <div class="insight-box archive-box">
+                These rows are <strong>not deleted</strong>; they remain in SQLite with quality flags for audit, regression tests, and calibration. They no longer count toward active top-caller ranking, recent activity, profile appearances, aggregate stats, or claim eligibility.
             </div>
-
-            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #222;">
-                <p style="color:#888; font-size:13px;">
-                    Note: This section only includes accounts from the Priority and Watch lists. Only posts from the last 72 hours are shown. Full deep dive on thesis quality is ongoing.
-                </p>
+            <h3>Top quarantined legacy handles</h3>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>Handle</th><th>Archived Rows</th><th>Legacy Tier A</th><th>Legacy A/B Hits</th><th>Reason</th></tr></thead>
+                    <tbody>
+                    <tr>
+                        <td><a href="https://x.com/chain_alphax" target="_blank" rel="noopener" class="handle">@chain_alphax</a></td>
+                        <td>10</td>
+                        <td>10</td>
+                        <td>10</td>
+                        <td class="analysis-notes">known noise account, service or signal account</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/orbitt_ai" target="_blank" rel="noopener" class="handle">@orbitt_ai</a></td>
+                        <td>8</td>
+                        <td>7</td>
+                        <td>7</td>
+                        <td class="analysis-notes">known noise account, service or signal account</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/web3automated" target="_blank" rel="noopener" class="handle">@web3automated</a></td>
+                        <td>8</td>
+                        <td>7</td>
+                        <td>7</td>
+                        <td class="analysis-notes">known noise account, service or signal account</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/cexscan" target="_blank" rel="noopener" class="handle">@cexscan</a></td>
+                        <td>12</td>
+                        <td>6</td>
+                        <td>6</td>
+                        <td class="analysis-notes">known noise account, service or signal account</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/ai4alpha" target="_blank" rel="noopener" class="handle">@ai4alpha</a></td>
+                        <td>6</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td class="analysis-notes">known noise account, service or signal account</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/coinbubbles_app" target="_blank" rel="noopener" class="handle">@coinbubbles_app</a></td>
+                        <td>7</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td class="analysis-notes">known noise account, service or signal account</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/coinwingsai" target="_blank" rel="noopener" class="handle">@coinwingsai</a></td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td class="analysis-notes">known noise account, service or signal account</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/finora_en" target="_blank" rel="noopener" class="handle">@finora_en</a></td>
+                        <td>7</td>
+                        <td>4</td>
+                        <td>6</td>
+                        <td class="analysis-notes">known noise account, service or signal account</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/whalesignals_" target="_blank" rel="noopener" class="handle">@whalesignals_</a></td>
+                        <td>5</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td class="analysis-notes">known noise account, service or signal account</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/dexsignals" target="_blank" rel="noopener" class="handle">@dexsignals</a></td>
+                        <td>9</td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td class="analysis-notes">known noise account, service or signal account</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/whisprnews" target="_blank" rel="noopener" class="handle">@whisprnews</a></td>
+                        <td>4</td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td class="analysis-notes">known noise account, service or signal account</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/cmscanner_macd" target="_blank" rel="noopener" class="handle">@cmscanner_macd</a></td>
+                        <td>3</td>
+                        <td>2</td>
+                        <td>2</td>
+                        <td class="analysis-notes">known noise account, service or signal account</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/cmscanner_sma" target="_blank" rel="noopener" class="handle">@cmscanner_sma</a></td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td class="analysis-notes">service identity, service or signal account</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/cryptodegenpump" target="_blank" rel="noopener" class="handle">@cryptodegenpump</a></td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td class="analysis-notes">service identity, service or signal account</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/onchaintrending" target="_blank" rel="noopener" class="handle">@onchaintrending</a></td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td class="analysis-notes">service identity, service or signal account</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/solanamultibuy" target="_blank" rel="noopener" class="handle">@solanamultibuy</a></td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>2</td>
+                        <td class="analysis-notes">service identity, service or signal account</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/signalcalls" target="_blank" rel="noopener" class="handle">@signalcalls</a></td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td class="analysis-notes">service identity, service or signal account</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://x.com/cmscanner_rsi" target="_blank" rel="noopener" class="handle">@cmscanner_rsi</a></td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td class="analysis-notes">service identity, service or signal account</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
-        </div>
+        </section>
 
-        <div class="section">
-            <h2>Recommendations</h2>
-            
-            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
-                <div>
-                    <h3 style="color:#4ade80;">Priority Watchlist</h3>
-                    <ul>
-                        <li>@chain_alphax</li>
-                        <li>@kek0x</li>
-                        <li>@cexscan</li>
-                        <li>@ai4alpha</li>
-                        <li>@chrismiles222</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 style="color:#fb923c;">Monitor Closely</h3>
-                    <ul>
-                        <li>@cherrysixx69</li>
-                        <li>@lumiagent</li>
-                        <li>@agentnyla</li>
-                        <li>@grand_masterxx</li>
-                        <li>@buythedipfagot</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 style="color:#f87171;">Deprioritize / Noise</h3>
-                    <ul>
-                        <li>@web3automated</li>
-                        <li>@orbitt_ai</li>
-                        <li>@memecoin_review</li>
-                        <li>@coinwingsai</li>
-                        <li>@whalesignals_</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        <section class="section">
+            <h2>What changed in production</h2>
+            <ul class="analysis-notes">
+                <li>Added account-level service/feed/signal quality gates in scoring.</li>
+                <li>Stored scoring quality flags with each caller hit.</li>
+                <li>Added a DB migration that archives known legacy noisy handles into <code>quality_quarantined</code>.</li>
+                <li>Filtered public top callers, recent activity, caller profiles, aggregate stats, and claim eligibility to active non-quarantined rows by default.</li>
+                <li>Versioned the lookup cache key so future searches rerun under the cleaner gate instead of reusing pre-fix cached reports.</li>
+            </ul>
+        </section>
 
-        <div class="section">
-            <p style="text-align: center; color: #666;">
-                Report generated using direct database access + Twitter analysis workflow.<br>
-                Data current as of May 20, 2026.
-            </p>
-        </div>
+        <div class="footer">WhoCalledIt / AlphaDash • generated from active non-quarantined caller evidence • 2026-05-20 17:50 UTC</div>
     </div>
 </body>
 </html>
