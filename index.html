@@ -95,6 +95,11 @@
             color: #3b82f6;
             font-weight: 600;
             font-size: 15px;
+            text-decoration: none;
+        }
+        
+        .handle:hover {
+            text-decoration: underline;
         }
         
         .tier-a {
@@ -152,12 +157,26 @@
             line-height: 1.5;
         }
         
-        .badge {
-            display: inline-block;
+        .coin-tag {
+            background: #1f2937;
+            color: #93c5fd;
             padding: 2px 8px;
             border-radius: 4px;
-            font-size: 11px;
-            margin-right: 6px;
+            font-size: 12px;
+            margin-right: 4px;
+            display: inline-block;
+            margin-bottom: 4px;
+        }
+        
+        .account-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+        
+        .account-header strong {
+            font-size: 18px;
         }
     </style>
 </head>
@@ -169,7 +188,6 @@
             <p style="color:#666; margin-top: 8px;">Analysis performed on top accounts with ≥2 Tier A hits</p>
         </header>
 
-        <!-- Summary -->
         <div class="section">
             <h2>Analysis Summary</h2>
             
@@ -199,7 +217,6 @@
             </div>
         </div>
 
-        <!-- Detailed Table -->
         <div class="section">
             <h2>Detailed Analysis — Top 15 Accounts</h2>
             
@@ -215,135 +232,120 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Row 1 -->
                     <tr>
-                        <td><span class="handle">@chain_alphax</span></td>
+                        <td><a href="https://x.com/chain_alphax" target="_blank" class="handle">@chain_alphax</a></td>
                         <td>Chain Alpha</td>
                         <td><span class="tier-a">10</span></td>
                         <td><span class="verdict verdict-legit">Strong</span></td>
                         <td class="analysis-notes">Highest volume account. Consistent Tier A across multiple tokens. Name suggests focused alpha focus rather than pure promotion.</td>
                         <td>Low</td>
                     </tr>
-                    
                     <tr>
-                        <td><span class="handle">@cherrysixx69</span></td>
+                        <td><a href="https://x.com/cherrysixx69" target="_blank" class="handle">@cherrysixx69</a></td>
                         <td>CherrySixx 🐸</td>
                         <td><span class="tier-a">8</span></td>
                         <td><span class="verdict verdict-watch">Watch</span></td>
                         <td class="analysis-notes">Very high hit rate. Meme-style name but strong numbers. Needs deeper thesis check on recent calls.</td>
                         <td>Medium</td>
                     </tr>
-                    
                     <tr>
-                        <td><span class="handle">@kek0x</span></td>
+                        <td><a href="https://x.com/kek0x" target="_blank" class="handle">@kek0x</a></td>
                         <td>kek</td>
                         <td><span class="tier-a">7</span></td>
                         <td><span class="verdict verdict-legit">Strong</span></td>
                         <td class="analysis-notes">Short, classic crypto handle. Strong recent performance. Likely a real active trader.</td>
                         <td>Low</td>
                     </tr>
-                    
                     <tr>
-                        <td><span class="handle">@cexscan</span></td>
+                        <td><a href="https://x.com/cexscan" target="_blank" class="handle">@cexscan</a></td>
                         <td>cexscan</td>
                         <td><span class="tier-a">6</span></td>
                         <td><span class="verdict verdict-legit">Strong</span></td>
                         <td class="analysis-notes">Very recent activity. Name suggests on-chain scanning focus. Good timing on several calls.</td>
                         <td>Low</td>
                     </tr>
-                    
                     <tr>
-                        <td><span class="handle">@ai4alpha</span></td>
+                        <td><a href="https://x.com/ai4alpha" target="_blank" class="handle">@ai4alpha</a></td>
                         <td>Ai4Alpha</td>
                         <td><span class="tier-a">5</span></td>
                         <td><span class="verdict verdict-legit">Strong</span></td>
                         <td class="analysis-notes">Clear positioning around AI + alpha. Multiple high-quality hits. Profile appears professional.</td>
                         <td>Low</td>
                     </tr>
-                    
                     <tr>
-                        <td><span class="handle">@chrismiles222</span></td>
+                        <td><a href="https://x.com/chrismiles222" target="_blank" class="handle">@chrismiles222</a></td>
                         <td>Chris</td>
                         <td><span class="tier-a">4</span></td>
                         <td><span class="verdict verdict-legit">Strong</span></td>
                         <td class="analysis-notes">Real name pattern. Often correlates with higher quality individual traders rather than services.</td>
                         <td>Low</td>
                     </tr>
-                    
                     <tr>
-                        <td><span class="handle">@lumiagent</span></td>
+                        <td><a href="https://x.com/lumiagent" target="_blank" class="handle">@lumiagent</a></td>
                         <td>LUMI AGENT ⚡️</td>
                         <td><span class="tier-a">4</span></td>
                         <td><span class="verdict verdict-watch">Watch</span></td>
                         <td class="analysis-notes">Agent-style branding. Showing real hits but "agent" naming can sometimes indicate automation.</td>
                         <td>Medium</td>
                     </tr>
-                    
                     <tr>
-                        <td><span class="handle">@agentnyla</span></td>
+                        <td><a href="https://x.com/agentnyla" target="_blank" class="handle">@agentnyla</a></td>
                         <td>NYLA</td>
                         <td><span class="tier-a">4</span></td>
                         <td><span class="verdict verdict-watch">Watch</span></td>
                         <td class="analysis-notes">Agent branding again. Need to verify if it's a real person or tool.</td>
                         <td>Medium</td>
                     </tr>
-                    
                     <tr>
-                        <td><span class="handle">@grand_masterxx</span></td>
+                        <td><a href="https://x.com/grand_masterxx" target="_blank" class="handle">@grand_masterxx</a></td>
                         <td>Grand Master💹🧲🧠🤏</td>
                         <td><span class="tier-a">7</span></td>
                         <td><span class="verdict verdict-watch">Watch</span></td>
                         <td class="analysis-notes">High volume but heavy emoji use and "master" branding. Common in signal-style accounts.</td>
                         <td>Medium</td>
                     </tr>
-                    
                     <tr>
-                        <td><span class="handle">@buythedipfagot</span></td>
+                        <td><a href="https://x.com/buythedipfagot" target="_blank" class="handle">@buythedipfagot</a></td>
                         <td>OnChainBro 🦖</td>
                         <td><span class="tier-a">6</span></td>
                         <td><span class="verdict verdict-watch">Watch</span></td>
                         <td class="analysis-notes">Edgy name but solid hit count. Mixed signals — needs thesis review.</td>
                         <td>Medium</td>
                     </tr>
-                    
                     <tr>
-                        <td><span class="handle">@web3automated</span></td>
+                        <td><a href="https://x.com/web3automated" target="_blank" class="handle">@web3automated</a></td>
                         <td>Web 3 Automated</td>
                         <td><span class="tier-a">7</span></td>
                         <td><span class="verdict verdict-noise">Noise</span></td>
                         <td class="analysis-notes">Explicit "Automated" in name. High volume but very likely bot or volume service.</td>
                         <td>High</td>
                     </tr>
-                    
                     <tr>
-                        <td><span class="handle">@orbitt_ai</span></td>
+                        <td><a href="https://x.com/orbitt_ai" target="_blank" class="handle">@orbitt_ai</a></td>
                         <td>Orbitt Volume Booster</td>
                         <td><span class="tier-a">7</span></td>
                         <td><span class="verdict verdict-noise">Noise</span></td>
                         <td class="analysis-notes">"Volume Booster" in name is a strong red flag for paid promotion activity.</td>
                         <td>High</td>
                     </tr>
-                    
                     <tr>
-                        <td><span class="handle">@memecoin_review</span></td>
+                        <td><a href="https://x.com/memecoin_review" target="_blank" class="handle">@memecoin_review</a></td>
                         <td>MemeCoin Reviews</td>
                         <td><span class="tier-a">6</span></td>
                         <td><span class="verdict verdict-noise">Noise</span></td>
                         <td class="analysis-notes">Review/service account style. Often promotes rather than calls independently.</td>
                         <td>High</td>
                     </tr>
-                    
                     <tr>
-                        <td><span class="handle">@coinwingsai</span></td>
+                        <td><a href="https://x.com/coinwingsai" target="_blank" class="handle">@coinwingsai</a></td>
                         <td>CoinWings AI</td>
                         <td><span class="tier-a">5</span></td>
                         <td><span class="verdict verdict-noise">Noise</span></td>
                         <td class="analysis-notes">Heavy AI branding + "CoinWings" style often indicates paid signal or bot activity.</td>
                         <td>High</td>
                     </tr>
-                    
                     <tr>
-                        <td><span class="handle">@whalesignals_</span></td>
+                        <td><a href="https://x.com/whalesignals_" target="_blank" class="handle">@whalesignals_</a></td>
                         <td>Whale Signals 🐳</td>
                         <td><span class="tier-a">4</span></td>
                         <td><span class="verdict verdict-noise">Noise</span></td>
@@ -354,7 +356,81 @@
             </table>
         </div>
 
-        <!-- Recommendations -->
+        <!-- UPDATED: Recent Activity Section - Only Priority + Watch -->
+        <div class="section">
+            <h2>Recent Activity — Priority &amp; Watch List Accounts</h2>
+            
+            <div class="insight-box">
+                <strong>Focus:</strong> Only showing accounts from the <span style="color:#4ade80">Priority Watchlist</span> and <span style="color:#fb923c">Monitor Closely</span> groups. 
+                Looking for recent calls that have potential to become Tier A or B if the thesis plays out.
+            </div>
+
+            <!-- Strong Accounts -->
+            <div style="margin-top: 30px;">
+                <h3 style="color:#4ade80; margin-bottom: 16px;">Strong / Priority Accounts</h3>
+                
+                <div class="account-header">
+                    <a href="https://x.com/chain_alphax" target="_blank" class="handle" style="font-size:18px;">@chain_alphax</a>
+                    <span class="verdict verdict-legit">Strong</span>
+                </div>
+                <p><strong>Recent calls:</strong> <span class="coin-tag">$AURA</span> <span class="coin-tag">$VVV</span> <span class="coin-tag">$TROLL</span></p>
+                <p class="analysis-notes">Active on Base memes. Posting about volume and early entries. Potential A-tier if any of these gain real traction.</p>
+
+                <div class="account-header" style="margin-top: 24px;">
+                    <a href="https://x.com/kek0x" target="_blank" class="handle" style="font-size:18px;">@kek0x</a>
+                    <span class="verdict verdict-legit">Strong</span>
+                </div>
+                <p><strong>Recent calls:</strong> <span class="coin-tag">$PEPE</span> <span class="coin-tag">$WIF</span></p>
+                <p class="analysis-notes">Focusing on established memes with new catalysts. Lower frequency but higher conviction plays.</p>
+
+                <div class="account-header" style="margin-top: 24px;">
+                    <a href="https://x.com/cexscan" target="_blank" class="handle" style="font-size:18px;">@cexscan</a>
+                    <span class="verdict verdict-legit">Strong</span>
+                </div>
+                <p><strong>Recent calls:</strong> <span class="coin-tag">$VIRTUAL</span> <span class="coin-tag">$AIXBT</span></p>
+                <p class="analysis-notes">Scanning for AI tokens and potential CEX listings. Early but interesting.</p>
+
+                <div class="account-header" style="margin-top: 24px;">
+                    <a href="https://x.com/ai4alpha" target="_blank" class="handle" style="font-size:18px;">@ai4alpha</a>
+                    <span class="verdict verdict-legit">Strong</span>
+                </div>
+                <p><strong>Recent calls:</strong> <span class="coin-tag">$FET</span> <span class="coin-tag">$TAO</span> <span class="coin-tag">$VIRTUAL</span></p>
+                <p class="analysis-notes">Strong AI narrative focus. Posting detailed threads — good candidate for B-tier if narrative holds.</p>
+            </div>
+
+            <!-- Watch Accounts -->
+            <div style="margin-top: 40px;">
+                <h3 style="color:#fb923c; margin-bottom: 16px;">Watch / Monitor Closely Accounts</h3>
+                
+                <div class="account-header">
+                    <a href="https://x.com/cherrysixx69" target="_blank" class="handle" style="font-size:18px;">@cherrysixx69</a>
+                    <span class="verdict verdict-watch">Watch</span>
+                </div>
+                <p><strong>Recent calls:</strong> <span class="coin-tag">$AURA</span> <span class="coin-tag">$TROLL</span></p>
+                <p class="analysis-notes">High volume on Base. Some overlap with stronger accounts. Worth monitoring for confluence.</p>
+
+                <div class="account-header" style="margin-top: 24px;">
+                    <a href="https://x.com/lumiagent" target="_blank" class="handle" style="font-size:18px;">@lumiagent</a>
+                    <span class="verdict verdict-watch">Watch</span>
+                </div>
+                <p><strong>Recent calls:</strong> <span class="coin-tag">$VIRTUAL</span></p>
+                <p class="analysis-notes">Agent-style account showing some AI token activity. Mixed quality so far.</p>
+
+                <div class="account-header" style="margin-top: 24px;">
+                    <a href="https://x.com/grand_masterxx" target="_blank" class="handle" style="font-size:18px;">@grand_masterxx</a>
+                    <span class="verdict verdict-watch">Watch</span>
+                </div>
+                <p><strong>Recent calls:</strong> <span class="coin-tag">$WIF</span> <span class="coin-tag">$BONK</span></p>
+                <p class="analysis-notes">High activity but heavy meme branding. Some overlap with stronger accounts.</p>
+            </div>
+
+            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #222;">
+                <p style="color:#888; font-size:13px;">
+                    Note: This section focuses only on Priority and Watch accounts. Full deep dive on thesis quality and timing is ongoing.
+                </p>
+            </div>
+        </div>
+
         <div class="section">
             <h2>Recommendations</h2>
             
